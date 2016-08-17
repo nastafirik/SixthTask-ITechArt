@@ -26,10 +26,10 @@ CREATE TABLE [Job](
 CREATE TABLE [Career](
 [CareerId] INT NOT NULL primary key identity (1,1),
 [JobId] INT NOT NULL,
-[IdEmployee] INT NOT NULL,
-[IdDepartment] INT NOT NULL,
+[EmployeeId] INT NOT NULL,
+[DepartmentId] INT NOT NULL,
 [DateStart] DATE NOT NULL,
-[DateEnd] DATE IS NULL,
+[DateEnd] DATE NULL,
 CONSTRAINT [FK_JobId] FOREIGN KEY ([JobId]) REFERENCES [Job] ([JobId]),
 CONSTRAINT [FK_EmployeeId] FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId]),
 CONSTRAINT [FK_DepartmentId] FOREIGN KEY ([DepartmentId]) REFERENCES [Department] ([DepartmentId])
@@ -67,7 +67,7 @@ insert into Employee
 (
   [LastName],
   [FirstName],
-  [DateOfBith]
+  [DateOfBirth]
  )
 values 
 ('Ivanov', 'Ivan','11/03/1995'),
@@ -98,7 +98,8 @@ values
 GO
 
 insert into Salary
-(
+( 
+  [EmployeeId],
   [Month],
   [Year],
   [Salary]
@@ -129,10 +130,10 @@ GO
 insert into Career
 (
   [JobId],
-  [IdEmployee],
-  [IdDepartment],
+  [EmployeeId],
+  [DepartmentId],
   [DateStart],
-  [DateEnd],
+  [DateEnd]
 )
 values 
 ('1', '1', '1', '01/07/2002', '05/10/2016'),
