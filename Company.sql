@@ -5,7 +5,7 @@ USE COMPANY
 GO
 
 CREATE TABLE [Department](
-[IdDepartment] int not null primary key identity (1,1),
+[IdDepartment] int NOT NULL primary key identity (1,1),
 [Name] nvarchar(20) not null,
 [Address] nvarchar(20) not null,
 )
