@@ -1,5 +1,12 @@
-SELECT e.IdEmployee, e.FirstName, e.LastName, AVG(s.Salary) MidleSalary
+SELECT 
+ e.EmployeeId, 
+ e.FirstName, 
+ e.LastName, 
+ AVG(s.Salary) MidleSalary
 FROM [Salary] s
-JOIN [Employee] e ON s.IdEmployee=e.IdEmployee
+INNER JOIN [Employee] e ON s.EmployeeId = e.EmployeeId
 WHERE s.Year=2015
-GROUP BY e.IdEmployee, e.FirstName, e.LastName
+GROUP BY
+ e.EmployeeId, 
+ e.FirstName, 
+ e.LastName

@@ -1,4 +1,9 @@
-SELECT e.LastName, e.FirstName, s.Salary
+SELECT 
+ e.LastName, 
+ e.FirstName, 
+ s.Salary
 FROM [Employee] e
-JOIN [Salary] s ON e.IdEmployee=s.IdEmployee
-WHERE s.Month=1 AND s.Year=2015 AND s.Salary>1000
+ INNER JOIN [Salary] s ON e.EmployeeId = s.EmployeeId 
+WHERE s.Month = 1 
+ AND s.Year = 2015 
+ AND s.Salary > 1000

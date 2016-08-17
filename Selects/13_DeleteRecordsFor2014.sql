@@ -1,3 +1,3 @@
 DELETE 
 FROM Salary
-WHERE Year<=2014
+WHERE Year <= 2014

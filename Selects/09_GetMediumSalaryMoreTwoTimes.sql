@@ -1,6 +1,13 @@
-SELECT e.IdEmployee, e.FirstName, e.LastName, AVG(s.Salary) MidleSalary
-FROM [Salary] s
-JOIN [Employee] e ON s.IdEmployee=e.IdEmployee
-WHERE s.Year=2015
-GROUP BY e.IdEmployee, e.FirstName, e.LastName
-HAVING COUNT(*)>1
+SELECT 
+ e.EmployeeId, 
+ e.FirstName, 
+ e.LastName, 
+ AVG(s.Salary) MidleSalary
+FROM [Employee] e
+INNER JOIN [Salary] s ON s.EmployeeId = e.EmployeeId
+WHERE s.Year = 2015
+GROUP BY 
+ e.EmployeeId, 
+ e.FirstName, 
+ e.LastName
+HAVING COUNT(e.EmployeeId) > 1
