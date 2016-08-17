@@ -1,3 +1,8 @@
-SELECT e.LastName, e.FirstName, DATEDIFF(YEAR, c.DateStart, ISNULL(c.DateEnd, GetDate()))  WorkExperience
+DECLARE 
+ @today DATETIME = GETDATE()
+SELECT 
+ e.LastName, 
+ e.FirstName, 
+ DATEDIFF(DAY, c.DateStart, ISNULL(c.DateEnd, @today)) WorkExperience
 FROM [Employee] e
-LEFT JOIN [Career] c ON e.IdEmployee=c.IdEmployee
+ INNER JOIN [Career] c ON e.EmployeeId = c.EmployeeId
