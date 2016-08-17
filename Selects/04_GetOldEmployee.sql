@@ -10,7 +10,7 @@ SELECT TOP (1)
  DATEDIFF(YEAR, DateOfBirth, GETDATE()) Old
 FROM Employee
 WHERE DateOfBirth = (
-					SELECT 
-					 Min(DateOfBirth) 
-					FROM Employee)
+	SELECT 
+	 Min(DateOfBirth) 
+	FROM Employee)
 GO
