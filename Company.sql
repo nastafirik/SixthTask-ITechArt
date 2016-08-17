@@ -1,50 +1,54 @@
-CREATE DATABASE COMPANY
+CREATE DATABASE Company
 GO
 
-USE COMPANY
+USE Company
 GO
 
 CREATE TABLE [Department](
-[IdDepartment] int NOT NULL primary key identity (1,1),
-[Name] nvarchar(20) not null,
-[Address] nvarchar(20) not null,
+[DepartmentId] INT NOT NULL primary key identity (1,1),
+[Name] NVARCHAR(64) NOT NULL,
+[Address] NVARCHAR(64) NOT NULL,
 )
 
 CREATE TABLE [Employee](
-[IdEmployee] int not null primary key identity (1,1),
-[LastName] nvarchar(20) not null,
-[FirstName] nvarchar(20) not null,
-[DateBorn] date not null
+[EmployeeId] INT NOT NULL primary key identity (1,1),
+[LastName] NVARCHAR(64) NOT NULL,
+[FirstName] NVARCHAR(64) NOT NULL,
+[DateOfBirth] DATE NOT NULL
 )
 
 CREATE TABLE [Job](
-[IdJob] int not null primary key identity (1,1),
-[JobTitle] nvarchar(20) not null,
-[MinMonthSalary] money not null
+[JobId] INT NOT NULL primary key identity (1,1),
+[JobTitle] NVARCHAR(64) NOT NULL,
+[MinMonthSalary] MONEY NOT NULL
 )
 
 CREATE TABLE [Career](
-[IdCareer] int not null primary key identity (1,1),
-[IdJob] int not null,
-[IdEmployee] int not null,
-[IdDepartment] int not null,
-[DateStart] date not null,
-[DateEnd] date,
-CONSTRAINT [FK_IdJob] FOREIGN KEY ([IdJob]) REFERENCES [Job] ([IdJob]),
-CONSTRAINT [FK_IdEmployee] FOREIGN KEY ([IdEmployee]) REFERENCES [Employee] ([IdEmployee]),
-CONSTRAINT [FK_IdDepartment] FOREIGN KEY ([IdDepartment]) REFERENCES [Department] ([IdDepartment])
+[CareerId] INT NOT NULL primary key identity (1,1),
+[JobId] INT NOT NULL,
+[IdEmployee] INT NOT NULL,
+[IdDepartment] INT NOT NULL,
+[DateStart] DATE NOT NULL,
+[DateEnd] DATE IS NULL,
+CONSTRAINT [FK_JobId] FOREIGN KEY ([JobId]) REFERENCES [Job] ([JobId]),
+CONSTRAINT [FK_EmployeeId] FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId]),
+CONSTRAINT [FK_DepartmentId] FOREIGN KEY ([DepartmentId]) REFERENCES [Department] ([DepartmentId])
 )
 
 CREATE TABLE [Salary](
-[IdEmployee] int not null,
-[Month] int not null CHECK (0 < Month AND Month < 13),
-[Year] int not null CHECK (2002 < Year AND Year < 2016),
-[Salary] money not null,
-CONSTRAINT [FK_IdEmployeeSalary] FOREIGN KEY ([IdEmployee]) REFERENCES [Employee] ([IdEmployee])
+[EmployeeId] INT NOT NULL,
+[Month] INT NOT NULL CHECK (0 < Month AND Month < 13),
+[Year] INT NOT NULL CHECK (2002 < Year AND Year < 2016),
+[Salary] MONEY NOT NULL,
+CONSTRAINT [FK_EmployeeSalaryId] FOREIGN KEY ([EmployeeId]) REFERENCES [Employee] ([EmployeeId])
 )
 
 
 insert into Department
+(
+  [Name],
+  [Address]
+ )
 values 
 ('D1', '9001-9010'),
 ('D2', '9011-9020'),
@@ -60,6 +64,11 @@ GO
 
 
 insert into Employee
+(
+  [LastName],
+  [FirstName],
+  [DateOfBith]
+ )
 values 
 ('Ivanov', 'Ivan','11/03/1995'),
 ('Petrov', 'Petr','06/08/1990'),
@@ -74,6 +83,10 @@ values
 GO
 
 insert into Job
+(
+  [JobTitle],
+  [MinMonthSalary]
+ )
 values 
 ('WebDesigner', '500'),
 ('MakeUpMan', '300'),
@@ -85,6 +98,11 @@ values
 GO
 
 insert into Salary
+(
+  [Month],
+  [Year],
+  [Salary]
+)
 values 
 ('1', '06', '2010', '600'),
 ('2', '10', '2012', '700'),
@@ -101,14 +119,21 @@ values
 ('3', '05', '2015', '500'),
 ('4', '05', '2015', '700'),
 ('5', '05', '2015', '600'),
-('1', '05', '2015', '600'),
+('1', '04', '2015', '600'),
 ('2', '02', '2015', '700'),
 ('3', '04', '2015', '700'),
-('4', '05', '2015', '900'),
+('4', '02', '2015', '900'),
 ('5', '02', '2015', '800')
 GO
 
 insert into Career
+(
+  [JobId],
+  [IdEmployee],
+  [IdDepartment],
+  [DateStart],
+  [DateEnd],
+)
 values 
 ('1', '1', '1', '01/07/2002', '05/10/2016'),
 ('2', '2', '2', '02/05/2007', '11/11/2015'),
@@ -118,6 +143,12 @@ values
 ('6', '6', '6', '06/11/2005', NULL),
 ('7', '7', '7', '07/05/2014', NULL),
 ('1', '8', '8', '08/08/2009', '01/08/2013'),
-('2', '9', '9', '09/01/2008', '02/08/2012'),
-('3', '10','10','01/04/2008', NULL)
+('2', '9', '9', '09/01/2006', '02/08/2012'),
+('3', '10','10','01/04/2012', NULL),
+('2', '7', '4', '09/01/2013', NULL),
+('1', '7', '3', '09/01/2009', '02/08/2012'),
+('2', '6', '5', '09/01/2005', '02/08/2012'),
+('1', '7', '4', '09/01/2008', '02/08/2012'),
+('2', '4', '5', '09/01/2008', '02/08/2012'),
+('3', '5', '3', '09/01/2007', NULL)
 GO
