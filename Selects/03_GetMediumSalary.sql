@@ -1,3 +1,9 @@
-SELECT AVG(Salary) as MediumSalary
+DECLARE
+  @month INT = 1,
+  @year INT = 2015
+
+SELECT
+  AVG(Salary) AS MediumSalary
 FROM Salary
-WHERE Month='01' and Year='2015'
+WHERE Month = @month 
+  AND Year = @year
