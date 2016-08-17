@@ -1,3 +1,5 @@
-SELECT IdJob,JobTitle
+SELECT 
+  JobId,
+  JobTitle
 FROM Job
-WHERE MinMonthSalary<500;
+WHERE MinMonthSalary < 500;
