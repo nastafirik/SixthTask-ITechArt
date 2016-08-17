@@ -5,26 +5,26 @@ USE Company
 GO
 
 CREATE TABLE [Department](
-[DepartmentId] INT NOT NULL primary key identity (1,1),
+[DepartmentId] INT NOT NULL PRIMARY KEY IDENTITY (1, 1),
 [Name] NVARCHAR(64) NOT NULL,
 [Address] NVARCHAR(64) NOT NULL,
 )
 
 CREATE TABLE [Employee](
-[EmployeeId] INT NOT NULL primary key identity (1,1),
+[EmployeeId] INT NOT NULL PRIMARY KEY IDENTITY (1, 1),
 [LastName] NVARCHAR(64) NOT NULL,
 [FirstName] NVARCHAR(64) NOT NULL,
 [DateOfBirth] DATE NOT NULL
 )
 
 CREATE TABLE [Job](
-[JobId] INT NOT NULL primary key identity (1,1),
+[JobId] INT NOT NULL PRIMARY KEY IDENTITY (1, 1),
 [JobTitle] NVARCHAR(64) NOT NULL,
 [MinMonthSalary] MONEY NOT NULL
 )
 
 CREATE TABLE [Career](
-[CareerId] INT NOT NULL primary key identity (1,1),
+[CareerId] INT NOT NULL PRIMARY KEY IDENTITY (1, 1),
 [JobId] INT NOT NULL,
 [EmployeeId] INT NOT NULL,
 [DepartmentId] INT NOT NULL,
@@ -44,12 +44,12 @@ CONSTRAINT [FK_EmployeeSalaryId] FOREIGN KEY ([EmployeeId]) REFERENCES [Employee
 )
 
 
-insert into Department
+INSERT INTO Department
 (
   [Name],
   [Address]
  )
-values 
+VALUES
 ('D1', '9001-9010'),
 ('D2', '9011-9020'),
 ('D3', '1001-1010'),
@@ -63,13 +63,13 @@ values
 GO
 
 
-insert into Employee
+INSERT INTO Employee
 (
   [LastName],
   [FirstName],
   [DateOfBirth]
  )
-values 
+VALUES
 ('Ivanov', 'Ivan','11/03/1995'),
 ('Petrov', 'Petr','06/08/1990'),
 ('Khristoforova', 'Anastasiya','01/02/1997'),
@@ -82,12 +82,12 @@ values
 ('Filimontseva', 'Darya','01/03/1997')
 GO
 
-insert into Job
+INSERT INTO Job
 (
   [JobTitle],
   [MinMonthSalary]
  )
-values 
+VALUES 
 ('WebDesigner', '500'),
 ('MakeUpMan', '300'),
 ('FrontEndDeveloper', '700'),
@@ -97,14 +97,14 @@ values
 ('PRManager', '400')
 GO
 
-insert into Salary
+INSERT INTO Salary
 ( 
   [EmployeeId],
   [Month],
   [Year],
   [Salary]
 )
-values 
+VALUES 
 ('1', '06', '2010', '600'),
 ('2', '10', '2012', '700'),
 ('3', '08', '2015', '500'),
@@ -127,7 +127,7 @@ values
 ('5', '02', '2015', '800')
 GO
 
-insert into Career
+INSERT INTO Career
 (
   [JobId],
   [EmployeeId],
@@ -135,7 +135,7 @@ insert into Career
   [DateStart],
   [DateEnd]
 )
-values 
+VALUES
 ('1', '1', '1', '01/07/2002', '05/10/2016'),
 ('2', '2', '2', '02/05/2007', '11/11/2015'),
 ('3', '3', '3', '03/10/2016', NULL),

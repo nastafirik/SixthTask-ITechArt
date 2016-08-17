@@ -11,4 +11,5 @@ WHERE Month = 5
 	WHERE s.EmployeeId = Salary.EmployeeId 
 	 AND Month < 5 
 	 AND Year = 2015
+	ORDER BY s.Salary DESC
 	 )

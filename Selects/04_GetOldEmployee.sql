@@ -1,13 +1,19 @@
+DECLARE
+ @today DATETIME = GETDATE()
+  
 SELECT 
  TOP(1) FirstName,
- DATEDIFF(YEAR, DateOfBirth, GETDATE()) Old
+ DATEDIFF(YEAR, DateOfBirth, @today) Old
 FROM Employee
 ORDER BY DateOfBirth ASC
 GO
 
+DECLARE
+ @today DATETIME = GETDATE()
+
 SELECT TOP (1)
  FirstName,
- DATEDIFF(YEAR, DateOfBirth, GETDATE()) Old
+ DATEDIFF(YEAR, DateOfBirth, @today) Old
 FROM Employee
 WHERE DateOfBirth = (
 	SELECT 
